@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 import os.path
 from matplotlib import pyplot as plt
+from numpy import array
 
 # D:\dk\python\Lena.png
 # path1 = input()
@@ -32,29 +33,30 @@ def average(color):
     return summa
 
 
-"""
-def convert():
-    for i in range(len(arr[0])):
-        for j in range(len(arr[1])):
-            arr_copy[i][j][0] *= 0.299
-            arr_copy[i][j][0] *= 0.587
-            arr_copy[i][j][0] *= 0.114
 
-"""
+
+def convert(arrr):
+
+    b = np.array([0.299, 0.587, 0.114])
+    arrrr=arrr*b
+    return arrrr
+
+
+q=convert((arr_copy))
+q = np.uint8(q)
 res = minimal(0),maximal(0),average(0)
 res1 = minimal(1),maximal(1),average(1)
 res2 = minimal(2),maximal(2),average(2)
 print("Миимальное, максимальное, среднее для канала R", res, "\nМиимальное, максимальное, среднее для канала G", res1,
       "\nМиимальное, максимальное, среднее для канала B", res2)
-"""
-convert()
 
 
 
 # Запись массива в изображение:
-img = Image.fromarray(arr_copy)
+img = Image.fromarray((q))
 img.save("D:\dk\python\Lena_grayscaled.png")
 
+"""
 arr_copy2 = arr_copy.copy()
 
 
