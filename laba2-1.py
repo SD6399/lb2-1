@@ -15,35 +15,24 @@ arr = np.asarray(Image.open(path1))
 arr_copy = arr.copy()
 
 
-# print(arr)  # Get the width and height of the image for iterating over
+# print(arr)
 def minimal(color):
-    mini = 256
-    for i in range(len(arr[0])):
-        for j in range(len(arr[1])):
-            if arr[i][j][color] < mini:
-                mini = (arr[i][j][color])
+    mini = (np.amin(arr, axis=(0, 1)))[color]
+
     return mini
 
 
 def maximal(color):
-    maxi = 0
-    for i in range(len(arr[0])):
-        for j in range(len(arr[1])):
-            if arr[i][j][color] > maxi:
-                maxi = (arr[i][j][color])
+    maxi = (np.amax(arr, axis=(0, 1)))[color]
     return maxi
 
 
 def average(color):
-    summa = 0
-    k = 0
-    for i in range(len(arr[0])):
-        for j in range(len(arr[1])):
-            summa += arr[i][j][color]
-            k += 1
-    return summa / k
+    summa = np.average(arr,axis=(0,1))[color]
+    return summa
 
 
+"""
 def convert():
     for i in range(len(arr[0])):
         for j in range(len(arr[1])):
@@ -51,13 +40,13 @@ def convert():
             arr_copy[i][j][0] *= 0.587
             arr_copy[i][j][0] *= 0.114
 
-
-res = minimal(0), maximal(0), average(0)
-res1 = minimal(1), maximal(1), average(1)
-res2 = minimal(2), maximal(2), average(2)
+"""
+res = minimal(0),maximal(0),average(0)
+res1 = minimal(1),maximal(1),average(1)
+res2 = minimal(2),maximal(2),average(2)
 print("Миимальное, максимальное, среднее для канала R", res, "\nМиимальное, максимальное, среднее для канала G", res1,
       "\nМиимальное, максимальное, среднее для канала B", res2)
-
+"""
 convert()
 
 
@@ -93,3 +82,4 @@ def histogr():
 
 
 histogr()
+"""
